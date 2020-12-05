@@ -1,7 +1,6 @@
 # day 4
 def part1(codes):
     countV = 0
-    print(len(codes))
     for code in codes:
         code = splitAndSort(code)
         if valid(code):
@@ -10,20 +9,11 @@ def part1(codes):
     return countV
 
 def part2(codes):
-    print(len(codes))
     countV = 0
-    #print(len(codes))
-    i = 0
     for code in codes:
-        print ("*********************", i, "*********************")
-        i+=1
         code = splitAndSort(code)
-  #      v = valid(code)
-  #      f = allFieldsValid(code)
-        if valid(code):
-            if allFieldsValid(code):
+        if valid(code) and allFieldsValid(code):
                 countV += 1
-
     return countV
 
 def splitAndSort(code):
@@ -45,13 +35,11 @@ def valid(c):
 def toInt(string):
     num = 0;
     for s in string:
-        #print(s)
-        if s.isdigit():
+         if s.isdigit():
             num*=10
             num+=int(s)
         else:
             return -1
-    #print(num)
     return num
 
 def isValidHex(c):
@@ -63,6 +51,7 @@ def isValidHex(c):
         if not ch.isdigit() and ch not in "abcdef":
             return False
     return True
+
 def isValidNineDigitNum(c):
     if len(c) != 9:
         return False
@@ -74,26 +63,19 @@ def isValidNineDigitNum(c):
 def validate(code):
     field = code[0:3]
     rest = code[4:]
-    print("Field: ", field, rest)
     toReturn = True;
-    #print(toReturn)
     if field == "byr":
         byr = toInt(rest)
-        #print(byr)
         toReturn = byr >= 1920 and byr <=2002;
     elif field == "iyr":
         iyr = toInt(rest)
         toReturn = iyr >= 2010 and iyr <= 2020;
-
     elif field == "eyr":
         eyr = toInt(rest)
         toReturn = eyr >= 2020 and eyr <= 2030;
-
     elif field == "hgt":
-        
         num = rest[0:-2]
         unit = rest[-2:]
-        #print("********IN HGT",rest, num, unit)
         if unit == "cm":
            toReturn =  toInt(num) >= 150 and toInt(num) <= 193;
         elif unit == "in":
@@ -110,33 +92,25 @@ def validate(code):
 
     elif field == "pid":
         toReturn = isValidNineDigitNum(rest)
-    #if not toReturn:
-    #print(toReturn, field, rest)
     return toReturn
             
         
 def allFieldsValid(code):
-    #print(code)
     toRet = True
     for c in code:
         if not validate(c):
            toRet = False;
     return toRet;
-    
-
-
 
 def splitOnBlank(lst):
     newList = []
     curr = ""
     for l in lst:
-        #print("L: ",l)
         if l == "":
             newList.append(curr)
             curr = ""
         else:
             curr= curr + " " + l
-        #print("Curr:", curr)
     return newList
 
 def printCodes(lst):

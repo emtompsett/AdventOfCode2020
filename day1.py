@@ -1,28 +1,19 @@
 #advent of code 2020
 #day 1
 
-def getNumsPart1(inNums):
-    for i in range(len(inNums)):
-        for j in range(i+1, len(inNums)):
-            if int(inNums[i]) + int(inNums[j]) == 2020:
-                 return int(inNums[i]),int(inNums[j])
-    return false;
-
-def getNumsPart2(inNums):
+def getNums(inNums):
     for i in range(len(inNums)):
         for j in range(i+1, len(inNums)):
             for k in range(j+1, len(inNums)):
-                if int(inNums[i]) + int(inNums[j]) + int(inNums[k]) == 2020:
-                    return int(inNums[i]),int(inNums[j]), int(inNums[k])
+                if int(inNums[i]) + int(inNums[j]) == 2020:
+                    return int(inNums[i]),int(inNums[j])
     return false;
 
 def main():
     file = open("inputDay1.txt", "r");
     lines = file.read().strip().split();
     print(lines)
-    nums1 = getNumsPart1(lines)
-    print("Part 1 answer: ", nums[0] * nums[1]);
-    nums2 = getNumsPart2(lines)
-    print("Part2 answer: ", nums[0] * nums[1]*nums[2]);
+    nums = getNums(lines)
+    print(nums[0] * nums[1])
         
 main();
